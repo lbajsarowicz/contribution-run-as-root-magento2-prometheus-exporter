@@ -63,7 +63,7 @@ class MetricRepository implements MetricRepositoryInterface
      *
      * @throws NoSuchEntityException
      *
-     * @return MetricInterface
+     * @return Metric
      */
     public function getById(int $id): MetricInterface
     {

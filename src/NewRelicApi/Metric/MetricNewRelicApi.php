@@ -26,7 +26,7 @@ class MetricNewRelicApi implements MetricNewRelicApiInterface
 
     /**
      * @param MetricInterface[] $metrics
-     * @throws ApiException
+     * @throws PostMetricException
      */
     public function post(array $metrics): MetricPostResponse
     {

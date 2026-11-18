@@ -8,7 +8,7 @@ use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\DB\Adapter\AdapterInterface;
 use Magento\Framework\DB\Select;
-use RunAsRoot\PrometheusExporter\Api\Data\MetricInterface;
+use RunAsRoot\PrometheusExporter\Model\Metric;
 use RunAsRoot\PrometheusExporter\Api\MetricAggregatorInterface;
 use RunAsRoot\PrometheusExporter\Repository\MetricRepository;
 use RunAsRoot\PrometheusExporter\Service\UpdateMetricService;
@@ -79,7 +79,7 @@ class ProductByTypeCountAggregator implements MetricAggregatorInterface
         $searchCriteriaMetrics = $this->searchCriteriaBuilder->addFilter('code', self::METRIC_CODE)->create();
         $metricsSearchResult = $this->metricRepository->getList($searchCriteriaMetrics);
         $metrics = $metricsSearchResult->getItems();
-        /** @var MetricInterface $metric */
+        /** @var Metric $metric */
         foreach ($metrics as $metric) {
             $metric->setValue("0");
             $this->metricRepository->save($metric);
