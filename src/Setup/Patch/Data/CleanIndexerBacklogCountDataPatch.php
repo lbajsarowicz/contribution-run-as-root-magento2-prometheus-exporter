@@ -31,9 +31,10 @@ class CleanIndexerBacklogCountDataPatch implements DataPatchInterface
     }
 
     /**
+     * @return $this
      * @throws CouldNotDeleteException
      */
-    public function apply(): void
+    public function apply(): self
     {
         $searchCriteriaMetrics = $this->searchCriteriaBuilder->addFilter('code', self::METRIC_CODE)->create();
         $metricsSearchResult = $this->metricRepository->getList($searchCriteriaMetrics);
@@ -42,5 +43,7 @@ class CleanIndexerBacklogCountDataPatch implements DataPatchInterface
         foreach ($metrics as $metric) {
             $this->metricRepository->delete($metric);
         }
+
+        return $this;
     }
 }

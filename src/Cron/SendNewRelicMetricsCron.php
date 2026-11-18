@@ -6,6 +6,7 @@ namespace RunAsRoot\PrometheusExporter\Cron;
 
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Psr\Log\LoggerInterface;
+use RunAsRoot\PrometheusExporter\Api\Data\MetricInterface;
 use RunAsRoot\PrometheusExporter\Exception\PostMetricException;
 use RunAsRoot\PrometheusExporter\Api\MetricRepositoryInterface;
 use RunAsRoot\PrometheusExporter\NewRelicApi\Metric\MetricNewRelicApiInterface;
@@ -52,8 +53,11 @@ class SendNewRelicMetricsCron
             return;
         }
 
+        /** @var MetricInterface[] $metrics */
+        $metrics = $metricSearchResults->getItems();
+
         try {
-            $response = $this->metricNewRelicApi->post($metricSearchResults->getItems());
+            $response = $this->metricNewRelicApi->post($metrics);
         } catch (PostMetricException $e) {
             $this->logger->error($e->getMessage());
         }

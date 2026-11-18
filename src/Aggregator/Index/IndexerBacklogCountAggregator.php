@@ -54,7 +54,7 @@ class IndexerBacklogCountAggregator implements MetricAggregatorInterface
 
             try {
                 $currentVersionId = $changelog->getVersion();
-                $stateVersion = $state->getVersionId();
+                $stateVersion = (int) $state->getVersionId();
 
                 $pendingCount = \count($changelog->getList($stateVersion, $currentVersionId));
                 $this->updateMetricService->update(self::METRIC_CODE, (string) $pendingCount, $labels);

@@ -158,9 +158,6 @@ class OrderItemCountAggregator implements MetricAggregatorInterface, IntervalAwa
      *
      * @param array<string, mixed>     $row
      * @param array<int|string, float> $childrenQtyBackorderedByParentId
-     *
-     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
-     * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     private function getStatusId(array $row, array $childrenQtyBackorderedByParentId): int
     {

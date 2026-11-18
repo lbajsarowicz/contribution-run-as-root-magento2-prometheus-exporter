@@ -21,7 +21,7 @@ class TokenGenerator extends Field
         parent::_prepareLayout();
 
         if (!$this->getTemplate()) {
-            $this->setTemplate('RunAsRoot_PrometheusExporter::system/config/tokenGeneratorButton.phtml');
+            $this->_template = 'RunAsRoot_PrometheusExporter::system/config/tokenGeneratorButton.phtml';
         }
 
         return $this;
