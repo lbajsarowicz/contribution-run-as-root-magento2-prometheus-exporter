@@ -45,7 +45,10 @@
     "monolog/monolog": "^2.9.0|^3.0",
     "magento/module-store": "*",
     "magento/module-indexer": "*",
-    "magento/zend-db": "*"
+    "magento/zend-db": "*",
+    "symfony/serializer": "^6.4",
+    "symfony/property-info": "^6.4",
+    "symfony/property-access": "^6.4"
   },
   "conflict": {
     "symfony/process": "<5.4.46",
