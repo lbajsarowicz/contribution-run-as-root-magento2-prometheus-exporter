@@ -45,7 +45,10 @@
     "monolog/monolog": "^2.9.0|^3.0",
     "magento/module-store": "*",
     "magento/module-indexer": "*",
-    "magento/zend-db": "*"
+    "magento/zend-db": "*",
+    "symfony/serializer": "^6.4",
+    "symfony/property-info": "^6.4",
+    "symfony/property-access": "^6.4"
   },
   "conflict": {
     "symfony/process": "<5.4.46",
@@ -54,7 +57,11 @@
     "symfony/console": "<5.4.46"
   },
   "require-dev": {
-    "phpunit/phpunit": "^9.5|^10.0"
+    "phpunit/phpunit": "^9.5|^10.0",
+    "magento/magento-coding-standard": "^41",
+    "phpstan/phpstan": "^2.1",
+    "bitexpert/phpstan-magento": "^0.44",
+    "phpstan/extension-installer": "^1.4"
   },
   "suggest": {
     "magento/module-review": "Enables the magento_products_with_bad_reviews_count_total metric"
@@ -71,7 +78,8 @@
       "magento/composer-dependency-version-audit-plugin": true,
       "magento/composer-root-update-plugin": true,
       "magento/inventory-composer-installer": true,
-      "laminas/laminas-dependency-plugin": true
+      "laminas/laminas-dependency-plugin": true,
+      "phpstan/extension-installer": true
     }
   },
   "autoload": {

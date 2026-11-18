@@ -7,7 +7,7 @@ namespace RunAsRoot\PrometheusExporter\Setup\Patch\Data;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Setup\Patch\DataPatchInterface;
-use RunAsRoot\PrometheusExporter\Api\Data\MetricInterface;
+use RunAsRoot\PrometheusExporter\Model\Metric;
 use RunAsRoot\PrometheusExporter\Repository\MetricRepository;
 
 class CleanIndexerBacklogCountDataPatch implements DataPatchInterface
@@ -31,16 +31,19 @@ class CleanIndexerBacklogCountDataPatch implements DataPatchInterface
     }
 
     /**
+     * @return $this
      * @throws CouldNotDeleteException
      */
-    public function apply(): void
+    public function apply(): self
     {
         $searchCriteriaMetrics = $this->searchCriteriaBuilder->addFilter('code', self::METRIC_CODE)->create();
         $metricsSearchResult = $this->metricRepository->getList($searchCriteriaMetrics);
         $metrics = $metricsSearchResult->getItems();
-        /** @var MetricInterface $metric */
+        /** @var Metric $metric */
         foreach ($metrics as $metric) {
             $this->metricRepository->delete($metric);
         }
+
+        return $this;
     }
 }

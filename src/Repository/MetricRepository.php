@@ -8,6 +8,7 @@ use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SearchResultsInterface;
 use Magento\Framework\Api\SearchResultsInterfaceFactory;
 use Magento\Framework\Api\SortOrder;
+use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
 use Magento\Framework\Exception\NoSuchEntityException;
@@ -40,7 +41,7 @@ class MetricRepository implements MetricRepositoryInterface
     }
 
     /**
-     * @param MetricInterface $object
+     * @param MetricInterface&AbstractModel $object
      *
      * @throws CouldNotSaveException
      *
@@ -62,7 +63,7 @@ class MetricRepository implements MetricRepositoryInterface
      *
      * @throws NoSuchEntityException
      *
-     * @return MetricInterface
+     * @return Metric
      */
     public function getById(int $id): MetricInterface
     {
@@ -120,7 +121,7 @@ class MetricRepository implements MetricRepositoryInterface
     }
 
     /**
-     * @param MetricInterface $object
+     * @param MetricInterface&AbstractModel $object
      *
      * @throws CouldNotDeleteException
      *

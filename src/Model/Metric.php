@@ -16,8 +16,6 @@ use RunAsRoot\PrometheusExporter\Model\ResourceModel\MetricResource;
 
 class Metric extends AbstractModel implements MetricInterface
 {
-    private array $labels = [];
-
     protected function _construct()
     {
         $this->_init(MetricResource::class);
@@ -44,15 +42,14 @@ class Metric extends AbstractModel implements MetricInterface
         $labels = $this->getData('labels');
 
         if (empty($labels)) {
-            return $this->labels = [];
+            return [];
         }
 
-        return $this->labels = json_decode($labels, true);
+        return json_decode($labels, true);
     }
 
     public function setLabels(array $labels): void
     {
-        $this->labels = $labels;
         $this->setData('labels', json_encode($labels));
     }
 

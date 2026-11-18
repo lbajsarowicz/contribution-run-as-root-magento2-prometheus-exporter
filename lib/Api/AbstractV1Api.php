@@ -35,6 +35,7 @@ abstract class AbstractV1Api
 {
     protected array $ignoredAttributes = ['headers'];
 
+    protected ClientConfigInterface $clientConfig;
     protected ClientInterface $client;
     protected SerializerInterface $serializer;
     protected RequestFactory $requestFactory;

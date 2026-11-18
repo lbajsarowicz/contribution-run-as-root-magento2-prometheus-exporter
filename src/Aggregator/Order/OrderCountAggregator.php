@@ -7,7 +7,7 @@ namespace RunAsRoot\PrometheusExporter\Aggregator\Order;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Exception\NoSuchEntityException;
-use RunAsRoot\PrometheusExporter\Api\Data\MetricInterface;
+use RunAsRoot\PrometheusExporter\Model\Metric;
 use RunAsRoot\PrometheusExporter\Api\IntervalAwareMetricAggregatorInterface;
 use RunAsRoot\PrometheusExporter\Api\MetricAggregatorInterface;
 use RunAsRoot\PrometheusExporter\Repository\MetricRepository;
@@ -101,7 +101,7 @@ class OrderCountAggregator implements MetricAggregatorInterface, IntervalAwareMe
         $searchCriteriaMetrics = $this->searchCriteriaBuilder->addFilter('code', self::METRIC_CODE)->create();
         $metricsSearchResult = $this->metricRepository->getList($searchCriteriaMetrics);
         $metrics = $metricsSearchResult->getItems();
-        /** @var MetricInterface $metric */
+        /** @var Metric $metric */
         foreach ($metrics as $metric) {
             $metric->setValue("0");
             $this->metricRepository->save($metric);
